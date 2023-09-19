@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title}, ~{:: main})}">
+  <head>
+    <title th:text="#{clients.title}"></title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 th:text="#{clients.header}"></h1>
+          <h5
+            th:if="${#lists.isEmpty(clients)}"
+            th:text="#{clients.table.empty}"
+          ></h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table" th:if="${! #lists.isEmpty(clients)}">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" th:text="#{clients.table.col.name}"></th>
+                <th scope="col" th:text="#{clients.table.col.birthDate}"></th>
+                <th scope="col" th:text="#{clients.table.col.profession}"></th>
+                <th scope="col" th:text="#{clients.table.col.actions}"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="client : ${clients}">
+                <th scope="row" th:text="${client.id}"></th>
+                <td>
+                  <a
+                    th:text="${client.name}"
+                    th:href="@{/clients/{id} (id=${client.id})}"
+                  ></a>
+                </td>
+                <td
+                  th:text="${#temporals.format(client.birthDate, 'dd/MM/yyyy')}"
+                ></td>
+                <td th:text="${client.profession}"></td>
+                <td>
+                  <a
+                    th:href="@{/clients/{id}/edit (id=${client.id})}"
+                    class="btn btn-warning"
+                    th:text="#{clients.table.action.edit}"
+                  >
+                  </a>
+                  <a
+                    th:href="@{/clients/{id}/delete (id=${client.id})}"
+                    th:text="#{clients.table.action.delete}"
+                    class="btn btn-danger"
+                    onclick="return confirm('Tem certeza que deseja excluir o cliente ?')"
+                  >
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <a
+            th:href="@{/clients/create}"
+            class="btn btn-primary"
+            th:text="#{clients.table.action.create}"
+          ></a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

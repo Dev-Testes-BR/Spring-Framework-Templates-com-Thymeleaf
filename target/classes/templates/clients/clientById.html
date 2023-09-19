@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title}, ~{:: main})}">
+  <head>
+    <title>Detalhes do clientes</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Detalhes do Cliente</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <h5 class="card-header" th:text="${client.name}"></h5>
+            <div class="card-body">
+              <p>Profissão: <span th:text="${client.profession}"></span></p>
+              <p>
+                Data de Nascimento: <span th:text="${client.birthDate}"></span>
+              </p>
+              <a
+                th:href="@{/clients/{id}/edit (id=${client.id})}"
+                class="btn btn-warning"
+              >
+                Editar
+              </a>
+              <a
+                th:href="@{/clients/{id}/delete (id=${client.id})}"
+                class="btn btn-danger"
+                onclick="return confirm('Tem certeza que deseja excluir o cliente ?')"
+              >
+                Excluir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

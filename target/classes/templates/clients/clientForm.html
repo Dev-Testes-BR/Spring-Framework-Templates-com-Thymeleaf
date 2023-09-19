@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::title}, ~{:: main})}">
+  <head>
+    <title
+      th:text="${client.id == null ? 'Cadastrar novo cliente' : 'Editar cliente'}"
+    ></title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1
+            th:text="${client.id == null ? 'Cadastrar novo cliente' : 'Editar cliente'}"
+          ></h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <form action="" method="post" th:object="${client}">
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- <div class="mb-3">
+              <label for="name" class="form-label">Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                th:field="*{name}"
+              />
+            </div> -->
+            <div
+              th:replace="~{fragments/_bootstrapFields :: input('name', 'Nome', 'text')}"
+            ></div>
+
+            <!-- <div class="mb-3">
+              <label for="birthDate" class="form-label"
+                >Data de Nascimento</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="birthDate"
+                th:field="*{birthDate}"
+              />
+            </div> -->
+            <div
+              th:replace="~{fragments/_bootstrapFields :: input('birthDate', 'Data de Nascimento', 'date')}"
+            ></div>
+
+            <!-- <div class="mb-3">
+              <label for="profession" class="form-label">Profissão</label>
+              <input
+                type="text"
+                class="form-control"
+                id="profession"
+                th:field="*{profession}"
+              />
+            </div> -->
+            <div
+              th:replace="~{fragments/_bootstrapFields :: input('profession', 'Profissão', 'text')}"
+            ></div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

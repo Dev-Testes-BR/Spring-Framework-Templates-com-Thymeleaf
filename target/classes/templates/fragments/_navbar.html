@@ -1,0 +1,20 @@
+<nav th:fragment="nav" class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}"
+      ><span class="navbar-brand mb-0 h1">Thymeleaf</span></a
+    >
+
+    <form class="d-flex" method="GET">
+      <select class="form-select me-2" name="lang">
+        <option disabled>Selecione o idioma</option>
+        <option th:selected="${#locale.toString() == 'pt'}" value="pt">
+          Português
+        </option>
+        <option th:selected="${#locale.toString() == 'en'}" value="en">
+          Inglês
+        </option>
+      </select>
+      <button class="btn btn-outline-success" type="submit">Ok</button>
+    </form>
+  </div>
+</nav>
